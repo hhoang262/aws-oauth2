@@ -12,7 +12,7 @@ spring:
     hibernate:
       ddl-auto: update
   datasource:
-    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/awsoauth2
+    url: jdbc:mysql://${MYSQL_HOST:aws-db-oauth2.cg8q3aegmhgo.us-east-1.rds.amazonaws.com}:3306/awsoauth2
     username: ${DB_USERNAME:admin}
     password: ${DB_PASSWORD:Hoang123$}
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
