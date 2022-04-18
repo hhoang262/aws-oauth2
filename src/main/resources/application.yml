@@ -1,0 +1,18 @@
+server:
+  port: 8080
+security:
+  jwt:
+    auth-path: /auth/**
+    header: Authorization
+    grant-type: Bearer
+    expiration: 86400
+    secret: JWTSECRETKEY
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/awsoauth2
+    username: ${DB_USERNAME:admin}
+    password: ${DB_PASSWORD:Hoang123$}
+    driver-class-name: com.mysql.jdbc.Driver
