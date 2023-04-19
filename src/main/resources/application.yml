@@ -2,7 +2,7 @@ server:
   port: 8080
 security:
   jwt:
-    auth-path: /auth/**
+    auth-path: /api/auth/**
     header: Authorization
     grant-type: Bearer
     expiration: 86400
@@ -11,8 +11,11 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
+    show-sql: true
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
   datasource:
-    url: jdbc:mysql://${MYSQL_HOST:aws-db-oauth2.cg8q3aegmhgo.us-east-1.rds.amazonaws.com}:3306/awsoauth2
-    username: ${DB_USERNAME:admin}
+#    url: jdbc:mysql://${MYSQL_HOST:aws-db-oauth2.cg8q3aegmhgo.us-east-1.rds.amazonaws.com}:3306/awsoauth2
+    url: jdbc:postgresql://localhost:5432/personal
+    username: ${DB_USERNAME:postgres}
     password: ${DB_PASSWORD:Hoang123$}
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    driver-class-name: org.postgresql.Driver
