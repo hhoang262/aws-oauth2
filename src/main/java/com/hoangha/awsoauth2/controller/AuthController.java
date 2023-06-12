@@ -32,6 +32,7 @@ public class AuthController {
     private final UserService userDetailsService;
     private final PasswordEncoder encoder;
 
+
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Validated @RequestBody UserCredentials userCredentials) {
         Authentication authentication = authenticationManager.authenticate(
@@ -52,6 +53,18 @@ public class AuthController {
 
     @PostMapping("/signup")
     public ResponseEntity<?> signup(@Validated @RequestBody UserCredentials userCredentials) {
+
+        if (userRepository.existsByUsername(signUpRequest.getUsername())) {
+            return ResponseEntity
+                    .badRequest()
+                    .body(new MessageResponse("Error: Username is already taken!"));
+        }
+
+        if (userRepository.existsByEmail(signUpRequest.getEmail())) {
+            return ResponseEntity
+                    .badRequest()
+                    .body(new MessageResponse("Error: Email is already in use!"));
+        }
 
         userDetailsService.findUsername(userCredentials.getUsername());
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
