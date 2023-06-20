@@ -5,7 +5,6 @@ import com.hoangha.awsoauth2.config.JwtConfiguration;
 import com.hoangha.awsoauth2.dto.JwtResponse;
 import com.hoangha.awsoauth2.dto.UserCredentials;
 import com.hoangha.awsoauth2.service.UserService;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -54,17 +53,17 @@ public class AuthController {
     @PostMapping("/signup")
     public ResponseEntity<?> signup(@Validated @RequestBody UserCredentials userCredentials) {
 
-        if (userRepository.existsByUsername(signUpRequest.getUsername())) {
-            return ResponseEntity
-                    .badRequest()
-                    .body(new MessageResponse("Error: Username is already taken!"));
-        }
-
-        if (userRepository.existsByEmail(signUpRequest.getEmail())) {
-            return ResponseEntity
-                    .badRequest()
-                    .body(new MessageResponse("Error: Email is already in use!"));
-        }
+//        if (userRepository.existsByUsername(signUpRequest.getUsername())) {
+//            return ResponseEntity
+//                    .badRequest()
+//                    .body(new MessageResponse("Error: Username is already taken!"));
+//        }
+//
+//        if (userRepository.existsByEmail(signUpRequest.getEmail())) {
+//            return ResponseEntity
+//                    .badRequest()
+//                    .body(new MessageResponse("Error: Email is already in use!"));
+//        }
 
         userDetailsService.findUsername(userCredentials.getUsername());
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
